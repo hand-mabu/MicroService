@@ -9,9 +9,15 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>xiongling-config-eureka</artifactId>
+    <artifactId>xiongling-config-eurekaServer</artifactId>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+        </dependency>
+
         <!--EurekaServer相关依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
