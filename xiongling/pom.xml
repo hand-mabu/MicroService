@@ -2,10 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.barret</groupId>
+    <artifactId>xiongling</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>xiongling</name>
+    <description>Micro-server project</description>
     <packaging>pom</packaging>
     <modules>
-        <module>xiongling-config-eurekaServer</module>
-        <module>xiongling-config-eurekaClient</module>
+        <module>multiNode-eurekaServer</module>
+        <module>multiNode-eurekaClient</module>
+        <module>multiNode-eurekaServer02</module>
+        <module>multiNode-eurekaServer03</module>
+        <module>singleNode-eurekaServer</module>
+        <module>singleNodes-eurekaClient</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -13,33 +23,18 @@
         <version>1.5.21.RELEASE</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.barret</groupId>
-    <artifactId>xiongling</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
-    <name>xiongling</name>
-    <description>Micro-server project</description>
 
-    <properties>
-        <java.version>1.8</java.version>
-    </properties>
-
-    <dependencies>
-
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+    <!--Maven依赖统一管理,子项目中的相关Spring cloud 依赖可以不加版本号-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Camden.SR5</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 </project>

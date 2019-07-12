@@ -1,0 +1,17 @@
+server:
+  port: 6666  #服务端口号
+eureka:
+  client:
+    service-url:
+      #注册到availability1上，由于3个注册中心组成了集群，eureka-availability-client服务通过availability1同步给了与之互相注册的availability2和availability3。
+      #两两注册的方式可以实现集群中节点完全对等的效果，实现最高可用性集群，任何一台注册中心故障都不会影响服务的注册与发现
+      defaultZone: http://availability1:3333/eureka/
+      #也可以指定多个注册中心
+      #defaultZone: http://availability1:3333/eureka/,http://availability2:4444/eureka/,http://availability3:5555/eureka/
+  instance:
+    #主机名
+    hostname: localhost
+spring:
+  application:
+    #服务名称
+    name: eureka-availability-client

@@ -1,0 +1,22 @@
+server:
+  port: 2002
+spring:
+  application:
+    name: eurekaserver2
+eureka:
+  server:
+    enable-self-preservation: false
+  instance:
+    hostname: server2
+    #注册到服务注册中心的实例显示的是ip
+    prefer-ip-address: true
+    #元数据
+    metadataMap:
+      instanceId: ${spring.application.name}:${random.value}
+  client:
+    #是否检索服务
+    fetch-registry: false
+    #是否允许Eureka自己尝试注册自己
+    register-with-eureka: false
+    serviceUrl:
+      defaultZone:  http://server1:2001/eureka/,http://server3:2003/eureka/
