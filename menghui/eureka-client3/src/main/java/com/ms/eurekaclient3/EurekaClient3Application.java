@@ -1,4 +1,4 @@
-package com.ms.eurekaclient2;
+package com.ms.eurekaclient3;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,10 +12,10 @@ import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboar
 @EnableFeignClients
 @EnableHystrixDashboard
 @EnableCircuitBreaker
-public class EurekaClient2Application {
+public class EurekaClient3Application {
 
     public static void main(String[] args) {
-        SpringApplication.run(EurekaClient2Application.class, args);
+        SpringApplication.run(EurekaClient3Application.class, args);
     }
 
 }

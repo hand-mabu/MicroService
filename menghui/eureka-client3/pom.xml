@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.ms</groupId>
-    <artifactId>eureka-client2</artifactId>
+    <artifactId>eureka-client3</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>eureka-client2</name>
+    <name>eureka-client3</name>
     <description>Demo project for Spring Boot</description>
 
     <properties>
@@ -24,11 +24,13 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
-<!--        feign-->
+
+        <!--feign-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
+
         <!--hystrix-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
