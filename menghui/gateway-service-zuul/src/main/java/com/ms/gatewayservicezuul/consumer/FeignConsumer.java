@@ -1,6 +1,7 @@
 package com.ms.gatewayservicezuul.consumer;
 
 import org.springframework.cloud.netflix.feign.FeignClient;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -9,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @description
  * @date 2019/7/16
  */
-@FeignClient(name = "spring-cloud-producer")
+@FeignClient(name = "serviceA")
 public interface FeignConsumer {
-    @RequestMapping(value = "/hello")
-    public String hello2(@RequestParam(value = "name") String name);
+    @RequestMapping(value = "/User/getUser/{id}")
+    String getUser(@PathVariable(value = "id") int id);
 }
