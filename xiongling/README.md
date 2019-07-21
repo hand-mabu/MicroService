@@ -33,7 +33,6 @@
    - 搭建EurekaClient
  
 ### Eureka基础架构 & 通信机制
-
    - Eureka服务配置与进阶  
         参考链接：[Eureka服务配置与进阶](https://www.cnblogs.com/sky-chen/p/10764931.html)
    
