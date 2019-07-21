@@ -51,8 +51,4 @@
             configprops:
                 enabled: false
         ```
- ###部署spring boot
-    1. 
-    2.
-    3. 
 
