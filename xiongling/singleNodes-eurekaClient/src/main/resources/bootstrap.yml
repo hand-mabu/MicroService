@@ -1,5 +1,15 @@
 server:
   port: 1112
+info:
+  test1:
+    name: ling
+    email: 18483690930@163.com
+endpoints:
+  mappings:
+    sensitive: false
+management:
+  security:
+    enabled: false
 eureka:
   instance:
     hostname: localhost

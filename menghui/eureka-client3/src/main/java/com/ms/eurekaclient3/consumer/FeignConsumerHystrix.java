@@ -1,6 +1,7 @@
 package com.ms.eurekaclient3.consumer;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class FeignConsumerHystrix implements FeignConsumer {
 
     @Override
-    public String hello2(@RequestParam(value = "name") String name) {
-        return "hello " + name + ", this messge send failed ";
+    public String getUser(@PathVariable int id) {
+        return "the method of getUser call failed!";
     }
 }

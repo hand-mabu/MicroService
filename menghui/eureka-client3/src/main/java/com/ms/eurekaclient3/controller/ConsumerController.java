@@ -16,8 +16,8 @@ public class ConsumerController {
     @Autowired
     FeignConsumer feignConsumer;
 
-    @RequestMapping("/hello/{name}")
-    public String index(@PathVariable("name") String name) {
-        return feignConsumer.hello2(name);
+    @RequestMapping("/User/getUser/{id}")
+    public String index(@PathVariable(value = "id") int id) {
+        return feignConsumer.getUser(id);
     }
 }
