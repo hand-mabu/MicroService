@@ -1,7 +1,5 @@
 # 微服务学习
-
 ### eureka服务注册中心（单机模式）
-
    > 搭建单机spring boot eureka服务注册中心项目，参见以下地址
     
    - [搭建单机eureka服务注册中心项目](https://blog.csdn.net/qq_28143647/article/details/79473294)
@@ -115,7 +113,7 @@
         
             对于服务实例的关闭或重启，在服务关闭重启期间，需要将此状态告诉给服务注册中心，将服务状态置为down，并把下线事件传播出去
 ### Actuator监控中心
-   > spring-boot-starter-actuator：用于监控与管理。参考配置Actuator资料：[spring boot 1.5.2 监控Actuator](https://blog.51cto.com/wyait/1970021?utm_source=oschina-app)
+   > ```spring-boot-starter-actuator```：用于监控与管理。参考配置Actuator资料：[spring boot 1.5.2 监控Actuator](https://blog.51cto.com/wyait/1970021?utm_source=oschina-app)
    1. 在相应的pom文件中引入依赖
         ```
         <dependency>
@@ -143,4 +141,33 @@
             configprops:
                 enabled: false
         ```
-
+### 负载均衡 —— Ribbon组件
+   服务器端负载均衡：硬件/软件负载均衡。nginx（软件负载均衡，在用户服务前添加nginx）  
+   客户端负载均衡：Ribbon
+   
+   - Ribbon策略  
+    （1）轮询（RoundRobin）
+    （2）随机（Random）
+    （3）加权（Weighted）
+    （4）哈希（Hash）
+    （5）一致性哈希（ConsistentHash）
+    
+   
+   - Ribbon的工作步骤  
+    （1）服务提供者启动多个服务实例并注册到一个注册中心，或多个相关联的服务注册中心  
+    （2）服务消费者直接通过被```@LoadBalanced```注解修饰过的RestTemplate来实现面向服务的接口调用    
+        ![img](https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=3322634002,818951745&fm=173&app=49&f=JPEG?w=640&h=323&s=5E283C63CB626C0B4A7D51CA000080B1)
+   
+   - 实例  
+    （1）在项目中引入Robbin  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        由于```spring-cloud-starter-eureka```依赖已经包含了Robbin，所以无需重新添加jar包
+        ```
+        <!--EurekaClient客户端依赖-->
+        <dependency>
+           <groupId>org.springframework.cloud</groupId>
+           <artifactId>spring-cloud-starter-eureka</artifactId>
+           <version>1.3.6.RELEASE</version>
+        </dependency>
+        ```
+     （2）添加 ```@LoadBalanced``` 注解即可

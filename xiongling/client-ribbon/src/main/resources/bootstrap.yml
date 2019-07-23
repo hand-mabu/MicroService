@@ -1,0 +1,11 @@
+server:
+  port: 9999
+
+eureka:
+  instance:
+    hostname: SERVICE-HELLOWOELD
+  client:
+    register-with-eureka: true
+    fetch-registry: false
+    service-url:
+      defaultZone: http://availability1:2001/eureka/,http://availability2:2002/eureka/,http://availability3:2003/eureka/

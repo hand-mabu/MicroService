@@ -1,0 +1,16 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://availability1:2001/eureka/,http://availability2:2002/eureka/,http://availability3:2003/eureka/
+server:
+  port: 7777
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hand-mabu/MicroService/tree/master/xiongling
+          searchPaths: config-properties/configServer
+  application:
+    name: config-server
