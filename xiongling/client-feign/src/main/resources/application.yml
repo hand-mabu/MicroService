@@ -2,11 +2,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://availability1:2001/eureka/,http://availability2:2002/eureka/,http://availability3:2003/eureka/
-#feign:
-#  httpclient:
-#    enabled: true
-#  hystrix:
-#    enabled: true
+feign:
+  hystrix:
+    enabled: true
 server:
   port: 8989
 spring:

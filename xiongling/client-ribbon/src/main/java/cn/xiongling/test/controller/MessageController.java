@@ -12,14 +12,9 @@ public class MessageController {
 
     @Autowired private MessageService messageService;
 
-//    @Autowired
-//    public MessageController(MessageService messageService) {
-//        this.messageService = messageService;
-//    }
-
     @RequestMapping(value = "/message")
-    public String hi(){
-        return messageService.hiService();
+    public String getMessage(){
+        return messageService.getMessageContent();
     }
 
 }

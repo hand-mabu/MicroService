@@ -199,3 +199,46 @@
         
             @FeignClient(value = "EUREKA-CLIENT")
         （3）在controller层调用service层的接口即可
+        
+## 熔断机制--断路器（Hystrix）
+   ![img](https://images2017.cnblogs.com/blog/1027173/201708/1027173-20170803150500756-1303484805.png)
+   - Hystrix断路器库的添加方式  
+        （1）添加依赖
+        ```$xslt
+            <!-- Hystrix断路器依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+            </dependency>
+        ```
+        （2）在Ribbon中使用断路器  
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            在启动类上添加```@EnableCircuitBreaker```注解
+            在service层添加```@HystrixCommand```注解，标注访问服务的方法，代码如下
+            
+            // @HystrixCommand注解标注访问服务的方法
+            @HystrixCommand(fallbackMethod = "serviceFailure")
+            public String getMessageContent() {
+               return restTemplate.getForObject("http://EUREKA-CLIENT/message", String.class);
+            }
+            
+            public String serviceFailure() {
+               return "The current service is not available";
+            }
+              
+        （3）在Feign中使用断路器  
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            注意：Feign内部支持了断路器，无需再在启动类上添加额外注解  
+            用```@FeignClient```注解添加fallback类，如下：  
+            ```@FeignClient(name = "EUREKA-CLIENT", fallback = MessageServiceFailure.class)```  
+            最后，创建服务调用异常失败类，继承此接口，代码如下：  
+            
+            @Component
+            public class MessageServiceFailure implements FeignService {
+            
+                @Override
+                public String printMessage() {
+                    return "The current service is not available";
+                }
+            }
+## 路由网关zuul
