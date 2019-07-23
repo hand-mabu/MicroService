@@ -19,6 +19,7 @@
         <module>eureka-client1</module>
         <module>eureka-client2</module>
         <module>config-server</module>
+        <module>config-client</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

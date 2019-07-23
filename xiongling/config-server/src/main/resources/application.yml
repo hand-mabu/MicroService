@@ -10,7 +10,7 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/hand-mabu/MicroService/tree/master/xiongling
-          searchPaths: config-properties/configServer
+          uri: https://github.com/hand-mabu/MicroService
+          searchPaths: xiongling/config-properties/configServer
   application:
     name: config-server
