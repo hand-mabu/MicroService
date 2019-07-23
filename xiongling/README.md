@@ -29,7 +29,16 @@
    - 搭建EurekaServer01、EurekaServer02、EurekaServer03
    
    - 搭建EurekaClient
- 
+### config server和client的搭建
+
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   ***建议了解掌握bootstrap.yml和application.yml两个文件的区别***  
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   config-server 中使用 ***application.yml***  
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   config-client 中使用 ***bootstrap.yml***
+       
+    
 ### Eureka基础架构 & 通信机制
    - Eureka服务配置与进阶  
         参考链接：[Eureka服务配置与进阶](https://www.cnblogs.com/sky-chen/p/10764931.html)
@@ -143,7 +152,7 @@
         ```
 ### 负载均衡 —— Ribbon组件
    服务器端负载均衡：硬件/软件负载均衡。nginx（软件负载均衡，在用户服务前添加nginx）  
-   客户端负载均衡：Ribbon
+   客户端负载均衡：Ribbon + restful 和 feign
    
    - Ribbon策略  
     （1）轮询（RoundRobin）
@@ -171,3 +180,22 @@
         </dependency>
         ```
      （2）添加 ```@LoadBalanced``` 注解即可
+     （3）注意调用restful的```restTemplate.getForObject```方法时，引用的服务是```spring.application.name```的值
+     
+ ## Feign声明式服务调度方式
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Feign是Spring Cloud提供的一种声明式REST客户端  
+   - Feign的实现方式  
+        （1）在pom文件引入相应的依赖
+        ```$xslt
+            <!-- 声明式REST客户端，访问调用远程服务提供的REST接口 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+            </dependency>
+        ```
+        
+        （2）在service层使用注解```@FeignClient```声明服务，注意，此处声明的同样是```spring.application.name```的值  
+        
+            @FeignClient(value = "EUREKA-CLIENT")
+        （3）在controller层调用service层的接口即可

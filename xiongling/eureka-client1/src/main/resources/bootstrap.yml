@@ -1,6 +1,6 @@
 spring:
   application:
-    name: eureka-client1
+    name: eureka-client
 server:
   #指定服务端口
   port: 8888

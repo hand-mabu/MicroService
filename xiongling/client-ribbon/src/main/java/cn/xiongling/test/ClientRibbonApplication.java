@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 // 向服务注册中心注册，注册了一个叫做restTemplate的bean
 @EnableDiscoveryClient
 public class ClientRibbonApplication {
+
     public static void main(String[] args) {
         SpringApplication.run(ClientRibbonApplication.class, args);
     }
@@ -18,7 +19,7 @@ public class ClientRibbonApplication {
     @Bean
     // 注册表明，这个restTemplate需要做负载均衡
     @LoadBalanced
-    RestTemplate restTemplate() {
+    public RestTemplate restTemplate() {
         return new RestTemplate();
     }
 }

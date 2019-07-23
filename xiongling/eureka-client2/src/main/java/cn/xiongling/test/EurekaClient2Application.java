@@ -19,7 +19,7 @@ public class EurekaClient2Application {
 
     @Value("${server.port}")
     String port;
-    @RequestMapping("/")
+    @RequestMapping("/message")
     public String home() {
         return "the current port is " + port;
     }

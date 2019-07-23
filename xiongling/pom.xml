@@ -20,6 +20,7 @@
         <module>eureka-client2</module>
         <module>config-server</module>
         <module>config-client</module>
+        <module>client-feign</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -34,7 +35,7 @@
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-dependencies</artifactId>
-                <version>Camden.SR5</version>
+                <version>Dalston.RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
