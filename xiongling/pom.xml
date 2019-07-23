@@ -11,11 +11,15 @@
     <packaging>pom</packaging>
     <modules>
         <module>multiNode-eurekaServer</module>
-        <module>multiNode-eurekaClient</module>
         <module>multiNode-eurekaServer02</module>
         <module>multiNode-eurekaServer03</module>
         <module>singleNode-eurekaServer</module>
         <module>singleNodes-eurekaClient</module>
+        <module>client-ribbon</module>
+        <module>eureka-client1</module>
+        <module>eureka-client2</module>
+        <module>config-server</module>
+        <module>config-client</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
