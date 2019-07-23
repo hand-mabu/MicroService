@@ -1,0 +1,14 @@
+server:
+  port: 10050
+spring:
+  application:
+    name: spring-cloud-config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/ityouknow/spring-cloud-starter/
+          search-paths: config-repo
+          username:
+          password:
+# http://127.0.0.1:10050/config-repo/dev
