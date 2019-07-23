@@ -1,0 +1,17 @@
+eureka:
+  client:
+    service-url:
+      defaultZone: http://availability1:2001/eureka/,http://availability2:2002/eureka/,http://availability3:2003/eureka/
+server:
+  port: 9527
+spring:
+  application:
+    name: service-zuul
+zuul:
+  routes:
+    ribbo:
+      path: /api-ribbon/**
+      serviceId: client-ribbon
+    feign:
+      path: /api-feign/**
+      serviceId: service-feign

@@ -21,6 +21,7 @@
         <module>config-server</module>
         <module>config-client</module>
         <module>client-feign</module>
+        <module>zuul-server</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

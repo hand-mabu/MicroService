@@ -212,7 +212,7 @@
             </dependency>
         ```
         （2）在Ribbon中使用断路器  
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            &nbsp;&nbsp;&nbsp;&nbsp;
             在启动类上添加```@EnableCircuitBreaker```注解
             在service层添加```@HystrixCommand```注解，标注访问服务的方法，代码如下
             
@@ -242,3 +242,32 @@
                 }
             }
 ## 路由网关zuul
+  > zuul：路由和过滤。zuul实现了负载均衡
+  
+   ![img](https://images2017.cnblogs.com/blog/1027173/201708/1027173-20170807163318987-1931843559.png)
+   - 创建zuul服务  
+        （1）添加依赖
+   
+         <!-- zuul依赖 -->
+         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
+         </dependency>
+            
+        （2）在启动类顶部添加注解```@EnableZuulProxy```  
+        （3）添加配置文件，添加路由
+        
+            zuul:
+              routes:
+                ribbo:
+                  path: /api-ribbon/**
+                  serviceId: client-ribbon
+                feign:
+                  path: /api-feign/**
+                  serviceId: service-feign  
+        （4）zuul过滤器  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        实现ZuulFilter接口接口对请求先进性筛选和过滤之后再路由到服务器  
+        
+学习参考博客：[spring cloud微服务入门教程](https://www.cnblogs.com/chry/p/7248947.html)
+   
