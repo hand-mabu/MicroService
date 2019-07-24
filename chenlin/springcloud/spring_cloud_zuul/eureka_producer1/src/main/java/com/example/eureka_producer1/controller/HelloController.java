@@ -1,4 +1,4 @@
-package com.neo.controller;
+package com.example.eureka_producer1.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class HelloController {
     @RequestMapping("/hello")
-    public String index(@RequestParam String name) {
-        return "hello "+name+"，this is first messge";
+    public String index(@RequestParam(value = "name")String name){
+        return "Hello "+name+"！This is Provide 1 !";
     }
 }

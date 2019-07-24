@@ -6,7 +6,7 @@
 
 ##### 服务中心又称注册中心，管理各种服务功能包括服务的注册、发现、熔断、负载、降级等，Eureka由两个组件组成：Eureka服务器和Eureka客户端。Eureka服务器用作服务注册服务器。Eureka客户端是一个java客户端，用来简化与服务器的交互、作为轮询负载均衡器，并提供服务的故障切换支持。Netflix在其生产环境中使用的是另外的客户端，它提供基于流量、资源利用率以及出错状态的加权负载均衡。
 
-图解：![1563873893321](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563873893321.png)
+图解：![1563873893321](.\photo\1563873893321.png)
 
 
 
@@ -18,7 +18,7 @@
 
 ***运行结果：***
 
-![1563874409592](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563874409592.png)
+![1563874409592](.\photo\1563874409592.png)
 
 ## 2.熔断 Hystrix
 
@@ -26,7 +26,7 @@
 
 
 
-图解：![1563874638876](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563874638876.png)
+图解：![1563874638876](.\photo\1563874638876.png)
 
 
 
@@ -57,11 +57,11 @@
 
   ***运行结果***：
 
-  ![1563875609329](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563875609329.png)
+  ![1563875609329](.\photo\1563875609329.png)
 
   
 
-  ![1563875624044](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563875624044.png)
+  ![1563875624044](.\photo\1563875624044.png)
 
   ## 3.熔断监控 Dashboard
 
@@ -92,11 +92,11 @@
 
   ***运行结果：***
 
-  ![1563876430068](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563876430068.png)
+  ![1563876430068](.\photo\1563876430068.png)
 
-  ![1563876471145](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563876471145.png)
+  ![1563876471145](.\photo\1563876471145.png)
 
-  ![1563876540253](C:\Users\林林\AppData\Roaming\Typora\typora-user-images\1563876540253.png)
+  ![1563876540253](.\photo\1563876540253.png)
 
   ## 4. zuul
 
