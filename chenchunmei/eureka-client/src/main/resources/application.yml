@@ -1,0 +1,11 @@
+eureka:
+  client:
+    serviceUrl:
+      #指定服务注册中心的地址
+      defaultZone: http://peer1:7081/eureka/,http://peer2:7082/eureka/
+server:
+  port: 8082
+spring:
+  application:
+    #服务名
+    name: service-test
