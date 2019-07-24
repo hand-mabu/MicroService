@@ -7,7 +7,7 @@ eureka:
   server:
     enable-self-preservation: false
   instance:
-    hostname: server3
+    hostname: availability3
     #注册到服务注册中心的实例显示的是ip
     prefer-ip-address: true
     #元数据
@@ -19,4 +19,4 @@ eureka:
     #是否允许Eureka自己尝试注册自己
     register-with-eureka: false
     serviceUrl:
-      defaultZone:  http://server1:2001/eureka/,http://server2:2002/eureka/
+      defaultZone:  http://availability1:2001/eureka/,http://availability2:2002/eureka/

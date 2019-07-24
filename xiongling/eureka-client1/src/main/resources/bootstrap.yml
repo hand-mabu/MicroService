@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: eureka-client
+server:
+  #指定服务端口
+  port: 8888
+eureka:
+  #server一定程度上也是client，互为client，
+  client:
+    #注册到服务器端
+    register-with-eureka: true
+    #由于自己就是服务器，不需要从服务器获取注册信息
+    fetch-registry: false
+    #服务地址
+    service-url:
+      defaultZone: http://availability1:2001/eureka/,http://availability2:2002/eureka/,http://availability3:2003/eureka/

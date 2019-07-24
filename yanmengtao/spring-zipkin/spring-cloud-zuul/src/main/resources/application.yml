@@ -1,5 +1,10 @@
 server:
   port: 8888
+zuul:
+  routes:
+    api-producer:
+      path: /producer/**
+      serviceId: producer
 spring:
   application:
     name: zuul
