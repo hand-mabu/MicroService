@@ -9,29 +9,26 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>client-ribbon</artifactId>
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+    <artifactId>client-feign</artifactId>
+
+    <!--<properties>-->
+        <!--<feign-httpclient>Brixtion.SR5</feign-httpclient>-->
+    <!--</properties>-->
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>
         </dependency>
-
+        <!-- 声明式REST客户端，访问调用远程服务提供的REST接口 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-ribbon</artifactId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
         </dependency>
-
-        <!-- Hystrix断路器依赖 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-hystrix</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -42,7 +39,19 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- 使用Apache HttpClient替换Feign原生httpclient -->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.httpcomponents</groupId>-->
+            <!--<artifactId>httpclient</artifactId>-->
+        <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>com.netflix.feign</groupId>-->
+            <!--<artifactId>feign-httpclient</artifactId>-->
+            <!--<version>${feign-httpclient}</version>-->
+        <!--</dependency>-->
     </dependencies>
+
     <build>
         <plugins>
             <plugin>
@@ -51,6 +60,7 @@
             </plugin>
         </plugins>
     </build>
+
     <repositories>
         <repository>
             <id>spring-milestones</id>
@@ -61,4 +71,5 @@
             </snapshots>
         </repository>
     </repositories>
+
 </project>

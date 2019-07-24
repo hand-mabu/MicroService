@@ -29,7 +29,16 @@
    - 搭建EurekaServer01、EurekaServer02、EurekaServer03
    
    - 搭建EurekaClient
- 
+### config server和client的搭建
+
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   ***建议了解掌握bootstrap.yml和application.yml两个文件的区别***  
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   config-server 中使用 ***application.yml***  
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   config-client 中使用 ***bootstrap.yml***
+       
+    
 ### Eureka基础架构 & 通信机制
    - Eureka服务配置与进阶  
         参考链接：[Eureka服务配置与进阶](https://www.cnblogs.com/sky-chen/p/10764931.html)
@@ -143,7 +152,7 @@
         ```
 ### 负载均衡 —— Ribbon组件
    服务器端负载均衡：硬件/软件负载均衡。nginx（软件负载均衡，在用户服务前添加nginx）  
-   客户端负载均衡：Ribbon
+   客户端负载均衡：Ribbon + restful 和 feign
    
    - Ribbon策略  
     （1）轮询（RoundRobin）
@@ -171,3 +180,94 @@
         </dependency>
         ```
      （2）添加 ```@LoadBalanced``` 注解即可
+     （3）注意调用restful的```restTemplate.getForObject```方法时，引用的服务是```spring.application.name```的值
+     
+ ## Feign声明式服务调度方式
+   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+   Feign是Spring Cloud提供的一种声明式REST客户端  
+   - Feign的实现方式  
+        （1）在pom文件引入相应的依赖
+        ```$xslt
+            <!-- 声明式REST客户端，访问调用远程服务提供的REST接口 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-feign</artifactId>
+            </dependency>
+        ```
+        
+        （2）在service层使用注解```@FeignClient```声明服务，注意，此处声明的同样是```spring.application.name```的值  
+        
+            @FeignClient(value = "EUREKA-CLIENT")
+        （3）在controller层调用service层的接口即可
+        
+## 熔断机制--断路器（Hystrix）
+   ![img](https://images2017.cnblogs.com/blog/1027173/201708/1027173-20170803150500756-1303484805.png)
+   - Hystrix断路器库的添加方式  
+        （1）添加依赖
+        ```$xslt
+            <!-- Hystrix断路器依赖 -->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-hystrix</artifactId>
+            </dependency>
+        ```
+        （2）在Ribbon中使用断路器  
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            在启动类上添加```@EnableCircuitBreaker```注解
+            在service层添加```@HystrixCommand```注解，标注访问服务的方法，代码如下
+            
+            // @HystrixCommand注解标注访问服务的方法
+            @HystrixCommand(fallbackMethod = "serviceFailure")
+            public String getMessageContent() {
+               return restTemplate.getForObject("http://EUREKA-CLIENT/message", String.class);
+            }
+            
+            public String serviceFailure() {
+               return "The current service is not available";
+            }
+              
+        （3）在Feign中使用断路器  
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            注意：Feign内部支持了断路器，无需再在启动类上添加额外注解  
+            用```@FeignClient```注解添加fallback类，如下：  
+            ```@FeignClient(name = "EUREKA-CLIENT", fallback = MessageServiceFailure.class)```  
+            最后，创建服务调用异常失败类，继承此接口，代码如下：  
+            
+            @Component
+            public class MessageServiceFailure implements FeignService {
+            
+                @Override
+                public String printMessage() {
+                    return "The current service is not available";
+                }
+            }
+## 路由网关zuul
+  > zuul：路由和过滤。zuul实现了负载均衡
+  
+   ![img](https://images2017.cnblogs.com/blog/1027173/201708/1027173-20170807163318987-1931843559.png)
+   - 创建zuul服务  
+        （1）添加依赖
+   
+         <!-- zuul依赖 -->
+         <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-zuul</artifactId>
+         </dependency>
+            
+        （2）在启动类顶部添加注解```@EnableZuulProxy```  
+        （3）添加配置文件，添加路由
+        
+            zuul:
+              routes:
+                ribbo:
+                  path: /api-ribbon/**
+                  serviceId: client-ribbon
+                feign:
+                  path: /api-feign/**
+                  serviceId: service-feign  
+        （4）zuul过滤器  
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        实现ZuulFilter接口接口对请求先进性筛选和过滤之后再路由到服务器  
+        
+学习参考博客：[spring cloud微服务入门教程](https://www.cnblogs.com/chry/p/7248947.html)
+   
