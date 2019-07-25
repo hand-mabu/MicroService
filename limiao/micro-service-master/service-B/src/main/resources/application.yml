@@ -1,0 +1,12 @@
+server:
+  port: 8004
+spring:
+  application:
+    name: hystrix
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+  instance:
+    hostname: hystrix #实例的主机名
+    prefer-ip-address: true #注册服务的时候使用服务的IP地址

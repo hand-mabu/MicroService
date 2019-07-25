@@ -1,0 +1,16 @@
+server:
+  port: 8100
+eureka:
+  client:
+    register-with-eureka: false #不把自己注册在eureka上
+    fetch-registry: false #不从注册中心获取服务的注册信息
+    service-url:
+      defaultZone: http://localhost:8100/eureka/
+  instance:
+    hostname: eureka-server #实例的主机名
+  server:
+    #Eureka Server在默认90s没有得到客户端的心跳，则注销该实例，但是往往因为
+    #微服务跨进程调用，网络通信往往会面临着各种问题，比如微服务状态正常，但是因为网络分区故障时，
+    #Eureka Server注销服务实例则会让大部分微服务不可用，这很危险，因为服务明明没有问题。
+    #为了解决这个问题，Eureka 有自我保护机制，通过在Eureka Server配置如下参数，可启动保护机制。
+    enable-self-preservation: true #服务保护机制
