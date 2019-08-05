@@ -11,7 +11,7 @@
 
     <artifactId>singleNodes-eurekaClient</artifactId>
     <dependencies>
-        <!--EuekaClient客户端依赖-->
+        <!--EurekaClient客户端依赖-->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-eureka</artifactId>

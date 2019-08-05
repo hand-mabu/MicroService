@@ -1,0 +1,9 @@
+server:
+  port: 6868
+eureka:
+  client:
+    service-url:
+      defaultZone: http://availability1:2001/eureka/,http://availability2:2002/eureka/,http://availability3:2003/eureka/
+spring:
+  application:
+    name: client-ribbon
