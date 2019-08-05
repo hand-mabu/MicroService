@@ -1,0 +1,40 @@
+spring:
+  profiles:
+    # \u901A\u8FC7\u6B64\u5904\u8BBE\u7F6E\u6FC0\u6D3B\u7684\u914D\u7F6E\u6587\u4EF6\u6765\u51B3\u5B9A\u9879\u76EE\u91C7\u7528\u54EA\u4E2A\u914D\u7F6E\u6587\u4EF6
+    # \u9879\u76EE\u6253\u6210jar \u5305\u4E4B\u540E \u53EF\u4EE5\u901A\u8FC7\u547D\u4EE4\u6765\u4FEE\u6539\u4E3B\u914D\u7F6E\u6587\u4EF6\u4E2D\u7684\u53C2\u6570 \u4F8B\u5982 java -jar eric-springboot-0.0.1-SNAPSHOT.jar --spring.profiles.active=test
+    active: eric
+server:
+  port: 8080
+# \u8FD9\u91CC\u53EF\u4EE5\u662F\u8BBE\u7F6E\u73AF\u5883\u901A\u7528\u914D\u7F6E
+eric:
+  jay:
+    url: eric.jay.com
+    urlValue: ${eric.jay.url}
+# --- \u4EE3\u8868\u53E6\u8D77\u4E00\u4E2A\u914D\u7F6E\u76F8\u5F53\u4E8E\u65B0\u5EFA\u4E00\u4E2A*.properties\u6587\u4EF6
+---
+spring:
+  profiles: dev
+server:
+  port: 8081
+
+
+---
+spring:
+  profiles: eric
+server:
+  port: 8082
+
+
+
+---
+spring:
+  profiles: pro
+server:
+  port: 8083
+
+
+---
+spring:
+  profiles: test
+server:
+  port: 8084
